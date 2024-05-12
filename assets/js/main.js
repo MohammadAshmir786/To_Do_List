@@ -81,7 +81,7 @@ function toggleEditSave(index) {
         // Switch to save mode
         const edited_value = inputField.value
         inputField.setAttribute('readonly', 'true');
-        inputField.value = inputField.textContent + edited_value;
+        index.parentElement.querySelector('.task-input').setAttribute('value', edited_value);
         editButton.style.display = 'block';
         saveButton.style.display = 'none';
         save_task();
