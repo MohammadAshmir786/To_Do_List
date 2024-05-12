@@ -1,0 +1,130 @@
+/* -------------------------------------
+    Custom body and structure designing
+----------------------------------------*/
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;    
+    background: url("../images/bg.jpg") no-repeat center / cover;
+}
+
+.container {
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur( 6px );
+    border-radius: 16px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    min-height: 70vh;
+    width: 30%;
+    margin: auto;
+}
+
+.header {
+    color: #FFF;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* -------------------------------------
+    Task List ( List, checkbox, Input )
+----------------------------------------*/
+
+.list-group{
+    align-content: center;
+    background-color: hwb(0 100% 0% / 0.781);
+    min-height: 50vh;
+}
+
+
+.completed{
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-item{
+    border: none;
+    gap: 10px;
+    background-color: transparent;
+}
+
+.task-input{
+    border: none;
+    border-bottom: 3px solid #000;
+    background-color: transparent;
+}
+
+.task-input:focus{
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 3px solid #000;
+    background-color: transparent;
+}
+
+/* -------------------------------------
+    Media query for responsiveness
+----------------------------------------*/
+
+@media screen and (max-width: 1024px) {
+
+    .container {
+        width: 60%;
+    }
+    
+}
+@media screen and (max-width: 768px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .header img{
+        width: 40px;
+        height: 40px;
+    }
+    
+}
+
+@media screen and (max-width: 425px) {
+
+    .header {
+        font-size: 30px;
+    }
+
+    .header img{
+        width: 40px;
+        height: 40px;
+    }
+
+    #taskList button{
+        padding: 2px 5px;
+    }
+    
+    #taskList button img{
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+    .container {
+        width: 95%;
+        padding: 30px 20px !important;
+    }
+
+    .header {
+        font-size: 25px;
+    }
+
+    .header img{
+        width: 30px;
+        height: 30px;
+    }
+
+
+}
