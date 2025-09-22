@@ -4,6 +4,7 @@ const taskList = document.getElementById('taskList');
 
 // Add tasks to the list
 function addTask() {
+    taskInput.focus();
     const taskText = taskInput.value.trim();
     if (taskText === '') {
         alert('Please enter a task.');
@@ -20,6 +21,8 @@ function addTask() {
         taskList.appendChild(listItem);
         save_task();
         taskInput.value = '';
+        // Remove the no task message if it exists.
+        checkAndDisplayNoTasks();
     }
     
 }
@@ -51,6 +54,8 @@ taskList.addEventListener('click', function(event) {
         }
         event.target.parentNode.remove();
         save_task();
+        // Remove the no task message after deleting tasks.
+        checkAndDisplayNoTasks();
     }
 });
 
@@ -62,6 +67,8 @@ function deleteCompleted() {
         checkbox.parentNode.remove(); // Remove the entire list item
     });
     save_task();
+    // Remove the no task message after deleting multiple tasks.
+    checkAndDisplayNoTasks();
 }
 
 
@@ -88,6 +95,30 @@ function toggleEditSave(index) {
     }
 }
 
+// Function to check if the task list is empty and display a message if it is.
+function checkAndDisplayNoTasks() {
+  const taskList = document.getElementById('taskList');
+  // Find the first child list item with the class 'task-item'.
+  const hasTasks = taskList.querySelector('.task-item');
+  // Find the existing 'no-tasks' message element.
+  const existingMessage = taskList.querySelector('.no-tasks-message');
+
+  // If the list is empty and the message isn't already there, create and add it.
+  if (!hasTasks && !existingMessage) {
+    taskList.classList.add('justify-content-center');
+    const noTasksMessage = document.createElement('div');
+    noTasksMessage.className = 'no-tasks-message text-secondary'; // Added a class for easy selection
+    noTasksMessage.innerHTML = '<div class="fs-2 fw-bold">No tasks to display yet.</div> <div class="fs-5">Start by adding one!</div>';
+    
+    taskList.appendChild(noTasksMessage);
+  } 
+  // If the list has tasks and the message is present, remove the message.
+  else if (hasTasks && existingMessage) {
+    taskList.classList.remove('justify-content-center');
+    existingMessage.remove();
+  }
+}
+
 
 // Save task to local storage
 function save_task(){
@@ -96,6 +127,9 @@ function save_task(){
    
 // Load task from local storage
 taskList.innerHTML = localStorage.getItem("tasks");
+
+// Check for tasks after the page loads.
+checkAndDisplayNoTasks();
 
 
 
